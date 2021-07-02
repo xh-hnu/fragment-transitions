@@ -42,19 +42,18 @@ public class GridFragment extends Fragment {
         setExitTransition(TransitionInflater.from(getContext())
                 .inflateTransition(R.transition.grid_exit_transition));
 
-        // A similar mapping is set at the ImagePagerFragment with a setEnterSharedElementCallback.
+        // 从grid 到 pager 的动画效果
         setExitSharedElementCallback(
                 new SharedElementCallback() {
                     @Override
                     public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
-                        // Locate the ViewHolder for the clicked position.
                         RecyclerView.ViewHolder selectedViewHolder = recyclerView
                                 .findViewHolderForAdapterPosition(MainActivity.currentPosition);
                         if (selectedViewHolder == null) {
                             return;
                         }
 
-                        // Map the first shared element name to the child ImageView.
+                        // 分享的element
                         sharedElements
                                 .put(names.get(0), selectedViewHolder.itemView.findViewById(R.id.card_image));
                     }

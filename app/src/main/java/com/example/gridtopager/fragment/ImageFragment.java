@@ -37,6 +37,7 @@ public class ImageFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_image, container, false);
         Bundle arguments = getArguments();
         @DrawableRes int imageRes = arguments.getInt(KEY_IMAGE_RES);
+        // pager 到 grid 的 element的唯一uid
         view.findViewById(R.id.image).setTransitionName(String.valueOf(imageRes));
         Glide.with(this)
                 .load(imageRes)
@@ -48,6 +49,7 @@ public class ImageFragment extends Fragment {
 
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        // 延迟进入
                         getParentFragment().startPostponedEnterTransition();
                         return false;
                     }

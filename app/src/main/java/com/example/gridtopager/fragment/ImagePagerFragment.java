@@ -61,15 +61,12 @@ public class ImagePagerFragment extends Fragment {
                         .inflateTransition(R.transition.iamge_shared_element_transition);
         setSharedElementEnterTransition(transition);
 
-        // A similar mapping is set at the GridFragment with a setExitSharedElementCallback.
+        // 从pager 回到 grid 的动画效果
         setEnterSharedElementCallback(
                 new SharedElementCallback() {
                     @Override
                     public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
-                        // Locate the image view at the primary fragment (the ImageFragment that is currently
-                        // visible). To locate the fragment, call instantiateItem with the selection position.
-                        // At this stage, the method will simply return the fragment at the position and will
-                        // not create a new one.
+                        //
                         Fragment currentFragment = (Fragment) viewPager.getAdapter()
                                 .instantiateItem(viewPager, MainActivity.currentPosition);
                         View view = currentFragment.getView();
@@ -77,7 +74,7 @@ public class ImagePagerFragment extends Fragment {
                             return;
                         }
 
-                        // Map the first shared element name to the child ImageView.
+
                         sharedElements.put(names.get(0), view.findViewById(R.id.image));
                     }
                 });

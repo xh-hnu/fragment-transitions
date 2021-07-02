@@ -143,6 +143,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
         public void onBind() {
             int position = getAbsoluteAdapterPosition();
             setImage(position);
+            // 分享的element需要设置唯一的uid
+            // 在绑定的时候设置
             image.setTransitionName(String.valueOf(IMAGE_DRAWABLES[position]));
         }
 
